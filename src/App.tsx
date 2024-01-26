@@ -1,52 +1,21 @@
-import {
-  Refine,
-  GitHubBanner,
-  WelcomePage,
-  Authenticated,
-  AuthPage,
-  ErrorComponent,
-} from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { Refine } from "@refinedev/core";
 
-import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import routerBindings, {
-  NavigateToResource,
-  CatchAllNavigate,
-  UnsavedChangesNotifier,
-  DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { Layout } from "./components/layout";
 import "./App.css";
+import options from "./options";
+import { dataProvider } from "./providers/dataProvider";
+import Product from "./Product";
+import ProductList from "./ProductList";
 
 function App() {
   return (
-    <BrowserRouter>
-      <GitHubBanner />
-      <RefineKbarProvider>
-        <DevtoolsProvider>
-          <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerBindings}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-              useNewQueryKeys: true,
-              projectId: "SJfTms-PYL6TL-FC8Rws",
-            }}
-          >
-            <Routes>
-              <Route index element={<WelcomePage />} />
-            </Routes>
-            <RefineKbar />
-            <UnsavedChangesNotifier />
-            <DocumentTitleHandler />
-          </Refine>
-          <DevtoolsPanel />
-        </DevtoolsProvider>
-      </RefineKbarProvider>
-    </BrowserRouter>
+    <Refine dataProvider={dataProvider} options={options}>
+      <h1>Hello Refine</h1>
+      <hr />
+      <Product />
+      <hr />
+      <ProductList />
+      <hr />
+    </Refine>
   );
 }
 
