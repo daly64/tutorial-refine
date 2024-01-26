@@ -1,4 +1,4 @@
-import { Refine } from "@refinedev/core";
+import { Refine, useCreate } from "@refinedev/core";
 
 import "./App.css";
 import options from "./options";
@@ -7,6 +7,12 @@ import Product from "./Product";
 import ProductList from "./ProductList";
 
 function App() {
+
+  function addProduct() {
+   
+    console.log("gg");
+  }
+
   return (
     <Refine dataProvider={dataProvider} options={options}>
       <h1>Hello Refine</h1>
@@ -15,6 +21,7 @@ function App() {
       <hr />
       <ProductList />
       <hr />
+      <button onClick={addProduct}>add</button>
     </Refine>
   );
 }

@@ -4,7 +4,9 @@ import axios from "axios";
 const API_URL = "https://api.fake-rest.refine.dev";
 export const dataProvider: DataProvider = {
   getList: ({ resource }) => {
-    return axios.get(`${API_URL}/${resource}`).then((response) => ({
+    return axios
+    .get(`${API_URL}/${resource}`)
+    .then((response) => ({
       data: response.data,
       total: response.data.length,
     }));
