@@ -18,6 +18,7 @@ function Product() {
       <h4>{product?.name}</h4>
       <p>Material: {product?.material}</p>
       <p>Price {product?.price}</p>
+      
     </div>
   );
 }

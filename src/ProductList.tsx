@@ -1,7 +1,19 @@
-import { useList } from "@refinedev/core";
+import { useCreate, useList } from "@refinedev/core";
 import { IProduct } from "./interfaces/IProduct";
 
 function ProductList() {
+  const { mutate } = useCreate();
+
+  function addProduct() {
+    mutate({
+      resource: "products",
+      values: {
+        name: "New Product",
+        material: "Wood",
+      },
+    });
+  }
+
   const { data, error, isError, isLoading } = useList<IProduct>({
     resource: "products",
   });
@@ -25,6 +37,8 @@ function ProductList() {
         ))}
       </ul>
       <h5>{total}</h5>
+      <hr />
+      <button onClick={addProduct}>add</button>
     </div>
   );
 }
