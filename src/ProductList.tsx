@@ -1,16 +1,22 @@
-import { useCreate, useList } from "@refinedev/core";
+import { BaseKey, useCreate, useDelete, useList } from "@refinedev/core";
 import { IProduct } from "./interfaces/IProduct";
 
 function ProductList() {
-  const { mutate } = useCreate();
-
-  function addProduct() {
+  // const { mutate } = useCreate();
+  const { mutate } = useDelete();
+  // function addProduct() {
+  //   mutate({
+  //     resource: "products",
+  //     values: {
+  //       name: "New Product",
+  //       material: "Wood",
+  //     },
+  //   });
+  // }
+  function deleteProduct(id: BaseKey) {
     mutate({
       resource: "products",
-      values: {
-        name: "New Product",
-        material: "Wood",
-      },
+      id: id,
     });
   }
 
@@ -32,13 +38,14 @@ function ProductList() {
           <li key={product.id}>
             <h4>
               {product.id} - ({product.name})
+              <button onClick={() => deleteProduct(product.id)}>X</button>
             </h4>
           </li>
         ))}
       </ul>
       <h5>{total}</h5>
       <hr />
-      <button onClick={addProduct}>add</button>
+      {/* <button onClick={addProduct}>add</button> */}
     </div>
   );
 }
